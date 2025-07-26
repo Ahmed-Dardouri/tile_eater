@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://flv2ugtx6rkj"]
+[gd_scene load_steps=3 format=3 uid="uid://xpdosvkx5rgk"]
 
+[ext_resource type="Script" uid="uid://5k2ixvxqygk3" path="res://scripts/tile_map_layer.gd" id="1_7gjgo"]
 [ext_resource type="TileSet" uid="uid://dq6r4kffsnmca" path="res://resources/tileset.tres" id="1_fu68b"]
 
-[node name="Node2D" type="Node2D"]
+[node name="tilemapper" type="Node2D"]
+script = ExtResource("1_7gjgo")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_set = ExtResource("1_fu68b")

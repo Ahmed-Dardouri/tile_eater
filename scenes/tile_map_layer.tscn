@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bioywa1gbeiuq"]
+
+[ext_resource type="TileSet" uid="uid://dq6r4kffsnmca" path="res://resources/tileset.tres" id="1_wipo8"]
+[ext_resource type="Script" uid="uid://5k2ixvxqygk3" path="res://scripts/tile_map_layer.gd" id="2_okeva"]
+
+[node name="TileMapLayer" type="TileMapLayer"]
+tile_set = ExtResource("1_wipo8")
+rendering_quadrant_size = 12076
+script = ExtResource("2_okeva")

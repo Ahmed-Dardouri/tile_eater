@@ -1,13 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdpbcybai2jah"]
+[gd_scene load_steps=4 format=3 uid="uid://bdpbcybai2jah"]
 
+[ext_resource type="PackedScene" uid="uid://bioywa1gbeiuq" path="res://scenes/tile_map_layer.tscn" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://eyeo3xf0cpeu" path="res://scenes/player_cursor.tscn" id="1_uwrxv"]
-[ext_resource type="PackedScene" path="res://scenes/staticObj.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://8p6f5eco5n73" path="res://scenes/staticObj.tscn" id="2_yqjtg"]
 
 [node name="game" type="Node"]
 
+[node name="TileMapLayer" parent="." instance=ExtResource("1_lnu2h")]
+unique_name_in_owner = true
+
 [node name="player_cursor" parent="." instance=ExtResource("1_uwrxv")]
 position = Vector2(284, 55)
-scale = Vector2(0.639999, 0.639999)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -32,6 +35,6 @@ rotation = 1.57096
 scale = Vector2(1, 7.23999)
 
 [node name="staticObjs5" parent="StaticObjs" instance=ExtResource("2_yqjtg")]
-position = Vector2(-180, -92)
+position = Vector2(-184, -91)
 rotation = 1.57096
 scale = Vector2(0.359975, 0.359928)

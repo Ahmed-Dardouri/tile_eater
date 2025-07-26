@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://flv2ugtx6rkj"]
+
+[ext_resource type="TileSet" uid="uid://dq6r4kffsnmca" path="res://resources/tileset.tres" id="1_fu68b"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("1_fu68b")
+rendering_quadrant_size = 12076

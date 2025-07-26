@@ -1,0 +1,28 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dq6r4kffsnmca"]
+
+[ext_resource type="Texture2D" uid="uid://qm44na3vx84" path="res://assets/fantasy_ [version 2.0]/swamp_/puddle_.png" id="1_qp2yk"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_81yw3"]
+texture = ExtResource("1_qp2yk")
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+
+[resource]
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_mask = 0
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Floor"
+terrain_set_0/terrain_0/color = Color(0.123846, 0.452065, 0.291601, 1)
+sources/0 = SubResource("TileSetAtlasSource_81yw3")

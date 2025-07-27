@@ -3,6 +3,7 @@ extends TileMapLayer
 const CLAIMED_ATLAS_COORDS = Vector2i(2,2)
 const UNCLAIMED_ATLAS_COORDS = Vector2i(4,3)
 
+
 const Y_EDGE = 19
 const X_EDGE = 35
 
@@ -38,7 +39,8 @@ func unclaim_tile(x,y):
 	pass
 
 func tileClaimed(x,y) -> bool:
-	return tilemap.get_cell_atlas_coords() == CLAIMED_ATLAS_COORDS
+	var coord: Vector2i = Vector2i(x,y)
+	return tilemap.get_cell_atlas_coords(coord) == CLAIMED_ATLAS_COORDS
 
 func FillAllAsClaimed():
 	for x in range(top_left_corner.x, bot_right_corner.x):
@@ -50,3 +52,6 @@ func boundCheck(x,y) -> bool:
 	if x > bot_right_corner.x || x < top_left_corner.x || y > bot_right_corner.y || y < top_left_corner.y:
 		check = false
 	return check
+
+		
+	

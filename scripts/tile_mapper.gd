@@ -4,9 +4,12 @@ extends Node2D
 
 @onready var active_layer := layerA
 
+var iterations = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	layerB.visible = false
+	fillHiddenLayerAsSafe()
 	pass # Replace with function body.
 
 
@@ -38,17 +41,27 @@ func fillHiddenLayerAsSafe():
 	hiddenLayer.FillAllAsClaimed()
 	
 func floodFill(x,y):
+	iterations += 1
 	var activeLayer := getActiveLayer()
 	var hiddenLayer := getHiddenLayer()
-	if activeLayer.boundCheck(x,y) && !activeLayer.tileClaimed(x,y):
-		hiddenLayer.claim_tile(x,y)
+	if activeLayer.boundCheck(x,y) && !activeLayer.tileClaimed(x,y) && hiddenLayer.tileClaimed(x,y):
+		hiddenLayer.unclaim_tile(x,y)
 		floodFill(x+1,y)
 		floodFill(x-1,y)
 		floodFill(x,y+1)
 		floodFill(x,y-1)
 	
+func CutRegion(x,y):
+	floodFill(x,y)
+	switchLayer()
+	fillHiddenLayerAsSafe()
+	
 func ClaimTile(x,y):
 	active_layer.claim_tile(x,y)
-
+	
+func TileClaimed(x,y) -> bool:
+	var hiddenLayer := getHiddenLayer()
+	return hiddenLayer.tileClaimed(x,y)
+	
 func GetTileFromGlobalPos(pos: Vector2) -> Vector2:
 	return active_layer.local_to_map(active_layer.to_local(pos))

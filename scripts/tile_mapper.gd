@@ -8,6 +8,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	layerB.visible = false
+	layerB.collision_enabled = false
 	fillHiddenLayerAsSafe()
 	pass  # Replace with function body.
 
@@ -32,11 +33,15 @@ func switchLayer():
 	if active_layer == layerA:
 		active_layer = layerB
 		layerA.visible = false
+		layerA.collision_enabled = false
 		layerB.visible = true
+		layerB.collision_enabled = true
 	else:
 		active_layer = layerA
 		layerA.visible = true
+		layerA.collision_enabled = true
 		layerB.visible = false
+		layerB.collision_enabled = false
 
 
 func fillHiddenLayerAsSafe():

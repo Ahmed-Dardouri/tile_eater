@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var tilemapper = %TileMapper
+@onready var enemy = %Enemy
 signal claim_tile_sig(x, y)
 
 const SPEED = 300.0
@@ -47,8 +48,7 @@ func setTiles():
 		tilemapper.ClaimTile(cur_tile_coords.x, cur_tile_coords.y)
 
 	if is_cur_tile_claimed && !is_previous_tile_claimed && cur_tile_coords != previous_tile:
-		var mouse_pos_global = get_global_mouse_position()
-		var tile_coords = tilemapper.GetTileFromGlobalPos(mouse_pos_global)
+		var tile_coords = tilemapper.GetTileFromGlobalPos(enemy.position)
 		tilemapper.CutRegion(tile_coords.x, tile_coords.y)
 
 	if cur_tile_coords != previous_tile:

@@ -10,6 +10,13 @@ var top_left_corner := Vector2(0, 0)
 var bottom_right_corner := Vector2(0, 0)
 var edge_half_size = Vector2(10, 10)
 
+var previous_tile := Vector2.ZERO
+var is_previous_tile_claimed := true
+
+
+func _ready() -> void:
+	previous_tile = tilemapper.GetTileFromGlobalPos(position)
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -33,6 +40,17 @@ func _process(delta: float) -> void:
 
 
 func setTiles():
-	var tile_coords = tilemapper.GetTileFromGlobalPos(position)
+	var cur_tile_coords = tilemapper.GetTileFromGlobalPos(position)
+	var is_cur_tile_claimed = tilemapper.TileClaimed(cur_tile_coords.x, cur_tile_coords.y)
 
-	tilemapper.ClaimTile(tile_coords.x, tile_coords.y)
+	if !is_cur_tile_claimed:
+		tilemapper.ClaimTile(cur_tile_coords.x, cur_tile_coords.y)
+
+	if is_cur_tile_claimed && !is_previous_tile_claimed && cur_tile_coords != previous_tile:
+		var mouse_pos_global = get_global_mouse_position()
+		var tile_coords = tilemapper.GetTileFromGlobalPos(mouse_pos_global)
+		tilemapper.CutRegion(tile_coords.x, tile_coords.y)
+
+	if cur_tile_coords != previous_tile:
+		previous_tile = cur_tile_coords
+		is_previous_tile_claimed = is_cur_tile_claimed

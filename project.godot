@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 settings/profiler/max_functions=17369
 settings/gdscript/max_call_stack=2047
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdscript_formatter/plugin.cfg")
+
 [input]
 
 switch={

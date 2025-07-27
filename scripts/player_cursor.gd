@@ -5,28 +5,16 @@ extends CharacterBody2D
 signal claim_tile_sig(x, y)
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-
-var top_left_corner := Vector2(0, 0)
-var bottom_right_corner := Vector2(0, 0)
-var edge_half_size = Vector2(10, 10)
 
 var previous_tile := Vector2.ZERO
 var is_previous_tile_claimed := true
+var is_player_safe = false
 
 
 func _ready() -> void:
+	$EnemyCollisionDetector.body_entered.connect(_on_body_entered)
 	previous_tile = tilemapper.GetTileFromGlobalPos(position)
-
-
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.pressed:
-			var mouse_pos_global = get_global_mouse_position()
-			var tile_coords = tilemapper.GetTileFromGlobalPos(mouse_pos_global)
-			tilemapper.CutRegion(tile_coords.x, tile_coords.y)
-	if Input.is_action_pressed("switch"):
-		tilemapper.switchLayer()
+	is_player_safe = IsPlayerSafe()
 
 
 func _process(delta: float) -> void:
@@ -54,3 +42,26 @@ func setTiles():
 	if cur_tile_coords != previous_tile:
 		previous_tile = cur_tile_coords
 		is_previous_tile_claimed = is_cur_tile_claimed
+		is_player_safe = IsPlayerSafe()
+
+
+func IsPlayerSafe() -> bool:
+	var pos = position
+	var points = []
+
+	points.append(pos + Vector2(30, 30))
+	points.append(pos + Vector2(30, -30))
+	points.append(pos + Vector2(-30, 30))
+	points.append(pos + Vector2(-30, -30))
+
+	for point in points:
+		var tile_pos = tilemapper.GetTileFromGlobalPos(point)
+		if !tilemapper.TileClaimed(tile_pos.x, tile_pos.y):
+			return false
+
+	return true
+
+
+func _on_body_entered(body):
+	if body == enemy:
+		print("The SCARY MONSTER got you!!")

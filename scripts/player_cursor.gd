@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@onready var tilemapper = %TileMapLayer
+@onready var tilemapper = %TileMapper
 signal claim_tile_sig(x,y)
 
 const SPEED = 300.0
@@ -8,7 +8,7 @@ const JUMP_VELOCITY = -400.0
 
 var top_left_corner := Vector2(0,0)
 var bottom_right_corner := Vector2(0,0)
-var edge_half_size = Vector2(30,30)
+var edge_half_size = Vector2(10,10)
 
 func _physics_process(delta: float) -> void:
 	
@@ -31,12 +31,5 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func setTiles():
-	top_left_corner = position - edge_half_size
-	bottom_right_corner = position + edge_half_size
-	
-	var cell_tl = tilemapper.local_to_map(tilemapper.to_local(top_left_corner))
-	var cell_br = tilemapper.local_to_map(tilemapper.to_local(bottom_right_corner))
-	for x in range(cell_tl.x + 1, cell_br.x):
-		for y in range(cell_tl.y + 1, cell_br.y):
-			tilemapper.claim_tile(int(x),int(y))
-	pass
+	var tile_coords = tilemapper.GetTileFromGlobalPos(position)
+	tilemapper.ClaimTile(tile_coords.x,tile_coords.y)

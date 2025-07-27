@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://bdpbcybai2jah"]
 
-[ext_resource type="PackedScene" uid="uid://bioywa1gbeiuq" path="res://scenes/tile_map_layer.tscn" id="1_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://dxbkyqs1tyx1n" path="res://scenes/tile_mapper.tscn" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://eyeo3xf0cpeu" path="res://scenes/player_cursor.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://8p6f5eco5n73" path="res://scenes/staticObj.tscn" id="2_yqjtg"]
 
 [node name="game" type="Node"]
 
-[node name="TileMapLayer" parent="." instance=ExtResource("1_lnu2h")]
+[node name="TileMapper" parent="." instance=ExtResource("1_lnu2h")]
 unique_name_in_owner = true
 
 [node name="player_cursor" parent="." instance=ExtResource("1_uwrxv")]
@@ -15,24 +15,6 @@ position = Vector2(284, 55)
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="StaticObjs" type="Node" parent="."]
-
-[node name="staticObjs" parent="StaticObjs" instance=ExtResource("2_yqjtg")]
-position = Vector2(634, -1)
-scale = Vector2(1, 5.24)
-
-[node name="staticObjs2" parent="StaticObjs" instance=ExtResource("2_yqjtg")]
-position = Vector2(-635, 0)
-scale = Vector2(1, 5.24)
-
-[node name="staticObjs3" parent="StaticObjs" instance=ExtResource("2_yqjtg")]
-position = Vector2(11, -390)
-rotation = 1.57096
-scale = Vector2(1, 7.23999)
-
-[node name="staticObjs4" parent="StaticObjs" instance=ExtResource("2_yqjtg")]
-position = Vector2(11, 387)
-rotation = 1.57096
-scale = Vector2(1, 7.23999)
 
 [node name="staticObjs5" parent="StaticObjs" instance=ExtResource("2_yqjtg")]
 position = Vector2(-184, -91)

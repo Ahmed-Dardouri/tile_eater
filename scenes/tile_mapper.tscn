@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxbkyqs1tyx1n"]
+
+[ext_resource type="PackedScene" uid="uid://bioywa1gbeiuq" path="res://scenes/tile_map_layer.tscn" id="1_3lrte"]
+[ext_resource type="Script" uid="uid://c5ve8myn3cqau" path="res://scripts/tile_mapper.gd" id="1_a4vej"]
+
+[node name="TileMapper" type="Node2D"]
+script = ExtResource("1_a4vej")
+
+[node name="TileMapLayerA" parent="." instance=ExtResource("1_3lrte")]
+
+[node name="TileMapLayerB" parent="." instance=ExtResource("1_3lrte")]
